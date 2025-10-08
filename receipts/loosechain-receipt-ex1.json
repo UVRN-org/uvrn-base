@@ -1,0 +1,63 @@
+{
+  "receipt_id": "loosechain_demo_0001",
+  "issuer": "github.com/your-org/your-repo",
+  "event": "code.commit",
+  "description": "Initial commit verified via Loosechain proof layer.",
+  "timestamp": "2025-10-06T00:00:00Z",
+
+  "actor": {
+    "type": "human",
+    "name": "Jane Developer",
+    "identity": "jane@yourorg.com",
+    "wallet": "0xA9F1..."
+  },
+
+  "resource": {
+    "type": "repository",
+    "url": "https://github.com/your-org/your-repo",
+    "branch": "main",
+    "commit_hash": "3b7e24f9b8f4...",
+    "files_changed": 12
+  },
+
+  "integrity": {
+    "hash_algorithm": "sha256",
+    "hash": "sha256:7e1a8b23c2c...",
+    "signature": "0x4d9c7a...",
+    "signature_method": "eip191"
+  },
+
+  "validation": {
+    "v_score": 97,
+    "checks": {
+      "completeness": true,
+      "parity": "matched",
+      "freshness": "within_2m"
+    }
+  },
+
+  "block_state": "loose",
+  "certificate": "DRVC3 v1.0",
+  "tags": ["#loosechain", "#proof", "#drvc3", "#code", "#commit"],
+
+  "replay_instructions": {
+    "service": "github.ci.replay_build",
+    "params": {
+      "repo": "your-org/your-repo",
+      "commit": "3b7e24f9b8f4"
+    }
+  },
+
+  "references": {
+    "parent_receipt": "uvrn_genesis_001",
+    "canonical_url": "https://uvrn.org/receipts/loosechain_demo_0001"
+  },
+
+  "notes": "This receipt can be adapted by replacing the issuer, resource details, and signature data. Keep hash + timestamp immutable once canonized.",
+
+  "blockchain_anchor": {
+    "enabled": false,
+    "chain": null,
+    "tx_hash": null
+  }
+}
