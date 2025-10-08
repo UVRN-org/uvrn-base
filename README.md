@@ -158,4 +158,4 @@ We welcome early contributors!
 
 ## 📜 License
 
-MIT — see [LICENSE](LICENSE) for details.
+MIT — see [[LICENSE]](https://github.com/UVRN-org/uvrn-base/blob/main/LICENSE) for details.
