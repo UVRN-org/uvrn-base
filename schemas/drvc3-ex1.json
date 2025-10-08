@@ -1,0 +1,13 @@
+{
+  "receipt_id": "abc123",
+  "issuer": "app.example.com",
+  "event": "content.publish",
+  "timestamp": "2025-10-06T21:00Z",
+  "hash": "sha256:…",
+  "block_state": "loose",
+  "v_score": 92,
+  "signers": [{"type": "wallet", "address": "0xA9F1…"}],
+  "replay_instructions": {"service": "app.launcher", "params": {"id": "42"}},
+  "certificate": "DRVC3 v1.0",
+  "tags": ["#uvrn", "#loosechain", "#replayable"]
+}
