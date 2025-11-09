@@ -2,7 +2,7 @@
   "receipt_id": "loosechain_demo_0001",
   "issuer": "github.com/your-org/your-repo",
   "event": "code.commit",
-  "description": "Initial commit verified via Loosechain proof layer.",
+  "description": "Demonstration receipt — documents a verified code commit through the Loosechain proof layer (public schema example).",
   "timestamp": "2025-10-06T00:00:00Z",
 
   "actor": {
@@ -28,12 +28,13 @@
   },
 
   "validation": {
-    "v_score": 97,
+    "status": "validated",
     "checks": {
       "completeness": true,
-      "parity": "matched",
-      "freshness": "within_2m"
-    }
+      "integrity_match": true,
+      "timestamp_valid": true
+    },
+    "revision_note": "Field structure updated for publication — no analytic or delta logic included."
   },
 
   "block_state": "loose",
@@ -53,7 +54,7 @@
     "canonical_url": "https://uvrn.org/receipts/loosechain_demo_0001"
   },
 
-  "notes": "This receipt can be adapted by replacing the issuer, resource details, and signature data. Keep hash + timestamp immutable once canonized.",
+  "notes": "Public demonstration of receipt schema. Hash and timestamp are immutable once canonized. Safe for open publication; excludes all Δ-Engine or learning logic.",
 
   "blockchain_anchor": {
     "enabled": false,
