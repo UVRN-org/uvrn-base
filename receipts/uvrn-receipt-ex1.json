@@ -23,12 +23,13 @@
   "integrity": {
     "hash_algorithm": "sha256",
     "hash": "sha256:7e1a8b23c2c...",
+    "signature_method": "eip191",
     "signature": "0x4d9c7a...",
-    "signature_method": "eip191"
+    "signer_address": "0xA9F1b2C3d4E5f6..."
   },
 
   "validation": {
-    "status": "validated",
+    "v_score": 95,
     "checks": {
       "completeness": true,
       "integrity_match": true,

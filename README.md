@@ -33,8 +33,15 @@ Every UVRN receipt follows the **DRVC3 v1.0** standard:
 git clone https://github.com/UVRN-org/uvrn-base.git
 cd uvrn-base
 npm install -g ajv-cli
-ajv validate -s schemas/UVRN_receipt.schema.json -d "examples/receipts/*.json"
+ajv validate -s schemas/drvc3.schema.json -d "receipts/uvrn-receipt-ex1.json"
+# or validate all: ajv validate -s schemas/drvc3.schema.json -d "receipts/*.json"
 ```
+
+## Schema and examples
+
+- **Schema:** [schemas/drvc3.schema.json](schemas/drvc3.schema.json) — base DRVC3 receipt structure.
+- **Examples:** [receipts/uvrn-receipt-ex1.json](receipts/uvrn-receipt-ex1.json) (full, with optional extension fields); [receipts/uvrn-receipt-minimal.json](receipts/uvrn-receipt-minimal.json) (minimal). Validate with: `ajv validate -s schemas/drvc3.schema.json -d "receipts/*.json"`.
+- For production and Delta Engine receipts, see [@uvrn/adapter](https://www.npmjs.com/package/@uvrn/adapter) and [uvrn-packages](https://github.com/UVRN-org/uvrn-packages) (extended DRVC3 envelope with Delta receipt).
 
 ## 🔑 Principles
 
@@ -48,10 +55,9 @@ ajv validate -s schemas/UVRN_receipt.schema.json -d "examples/receipts/*.json"
 - **[uvrn-packages](https://github.com/UVRN-org/uvrn-packages)** — Implementation monorepo: Delta Engine, CLI, API, MCP, DRVC3 adapter. Published as `@uvrn/*` on npm. [@uvrn/core](https://www.npmjs.com/package/@uvrn/core) · [@uvrn/sdk](https://www.npmjs.com/package/@uvrn/sdk) · [@uvrn/adapter](https://www.npmjs.com/package/@uvrn/adapter) · [@uvrn/mcp](https://www.npmjs.com/package/@uvrn/mcp) · [@uvrn/api](https://www.npmjs.com/package/@uvrn/api) · [@uvrn/cli](https://www.npmjs.com/package/@uvrn/cli)
 - **[uvrn](https://github.com/UVRN-org/uvrn)** — Project landing page and repo directory.
 
-____________________________________________
-____________________________________________
-____________________________________________
-____________________________________________
+**Open source:** Source: [uvrn-base](https://github.com/UVRN-org/uvrn-base). Implementation: [uvrn-packages](https://github.com/UVRN-org/uvrn-packages), [uvrn](https://github.com/UVRN-org/uvrn).
+
+---
 
 
 # 🪞 UVRN Protocol 
@@ -72,10 +78,9 @@ Tags act like open-graph hashtags for proof context.
 They help index receipts across apps, agents, and people.
 
 Tag Meaning Typical Use
-#drvc3 Core protocol event Any generic proof action
+#drvc3 DRVC3 certificate / protocol Compliance, generic proof, schema version
 #canonized Finalized / blocked receipt Locked record, NFT seal, or audit log
-#uvrn Linked to the Unified Verification & Reasoning Network Cross-registry sync
-#drvc3 Using DRVC3 certificate schema Compliance and version tracking
+#uvrn Universal Verification Receipt Network Cross-registry sync
 #proof Generic evidence emission Generic verification events
 #vscore Confidence-score event Quality metrics / analytics
 #ai-action AI-initiated proof Model run, agent act, automation
@@ -91,20 +96,25 @@ Each tag can appear in the receipt metadata:
 
 # 🧾 UVRN Protocol Outline
 
-# 1. Receipt Structure — DRVC3 Schema Extension
+# 1. Receipt Structure — DRVC3 Schema
 
 {
-"receipt_id": "abc123",
-"issuer": "app.example.com",
-"event": "content.publish",
-"timestamp": "2025-10-06T21:00Z",
-"hash": "sha256:…",
-"block_state": "loose",
-"v_score": 92,
-"signers": [{"type": "wallet", "address": "0xA9F1…"}],
-"replay_instructions": {"service": "app.launcher", "params": {"id": "42"}},
-"certificate": "DRVC3 v1.0",
-"tags": ["#uvrn", "#drvc3", "#replayable"]
+  "receipt_id": "abc123",
+  "issuer": "app.example.com",
+  "event": "content.publish",
+  "timestamp": "2025-10-06T21:00Z",
+  "integrity": {
+    "hash_algorithm": "sha256",
+    "hash": "sha256:…",
+    "signature_method": "eip191",
+    "signature": "0x…",
+    "signer_address": "0xA9F1…"
+  },
+  "validation": { "v_score": 92, "checks": {} },
+  "block_state": "loose",
+  "certificate": "DRVC3 v1.0",
+  "replay_instructions": {"service": "app.launcher", "params": {"id": "42"}},
+  "tags": ["#uvrn", "#drvc3", "#replayable"]
 }
 
 # 2. Lifecycle (TVC Loop)
@@ -156,15 +166,10 @@ Selective immutability – Block only what must endure.
 
 Ethical proof design – Privacy-preserving verification.
 
-# 7. License
-
-MIT / Open Proof Standard v1.0
-
-
 ## 🤝 Contributing
 
 We welcome early contributors!
 
 ## 📜 License
 
-MIT — see [[LICENSE]](https://github.com/UVRN-org/uvrn-base/blob/main/LICENSE) for details.
+MIT — see [LICENSE](LICENSE) in this repo.

@@ -1,3 +1,8 @@
+/**
+ * UVRN Base demo — create and verify DRVC3 receipts locally.
+ * For production use see: uvrn-packages (https://github.com/UVRN-org/uvrn-packages),
+ * @uvrn/core, and @uvrn/adapter.
+ */
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import path from "node:path";
