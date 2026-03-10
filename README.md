@@ -1,6 +1,6 @@
 # UVRN Base
 
-**Universal Verification Receipts for Nything (UVRN)**  
+**Universal Verification Receipt Network (UVRN)**  
 _The SSL of AI and analytics._
 
 **UVRN Base** is the seed repository of the **uvrn-org** organization.  
@@ -43,22 +43,27 @@ ajv validate -s schemas/UVRN_receipt.schema.json -d "examples/receipts/*.json"
 - **Proof over trust** → verification = receipts, not screenshots
 - **Extendable** → artifacts, fix-it recipes, and explorers grow from the base
 
+## Ecosystem
+
+- **[uvrn-packages](https://github.com/UVRN-org/uvrn-packages)** — Implementation monorepo: Delta Engine, CLI, API, MCP, DRVC3 adapter. Published as `@uvrn/*` on npm. [@uvrn/core](https://www.npmjs.com/package/@uvrn/core) · [@uvrn/sdk](https://www.npmjs.com/package/@uvrn/sdk) · [@uvrn/adapter](https://www.npmjs.com/package/@uvrn/adapter) · [@uvrn/mcp](https://www.npmjs.com/package/@uvrn/mcp) · [@uvrn/api](https://www.npmjs.com/package/@uvrn/api) · [@uvrn/cli](https://www.npmjs.com/package/@uvrn/cli)
+- **[uvrn](https://github.com/UVRN-org/uvrn)** — Project landing page and repo directory.
+
 ____________________________________________
 ____________________________________________
 ____________________________________________
 ____________________________________________
 
 
-# 🪞 Loosechain Protocol 
+# 🪞 UVRN Protocol 
 
 **Portable proof for the open web.**
-Loosechain is the lightweight verification protocol that powers UVRN — receipts that flow freely until you decide to block (canonize) them.
+UVRN is the lightweight verification protocol — receipts that flow freely until you decide to block (canonize) them.
 
 # ✨ Core Idea
 
 “Proof that flows. Block it when it matters.”
 
-Loosechain replaces heavy ledgers with tiny receipts: signed JSON records that prove who did what, when, and with what result.
+UVRN replaces heavy ledgers with tiny receipts: signed JSON records that prove who did what, when, and with what result.
 Each receipt can stay loose (mutable, portable) or become blocked (canonical, permanent).
 
 # 🔖 Tag Examples
@@ -67,7 +72,7 @@ Tags act like open-graph hashtags for proof context.
 They help index receipts across apps, agents, and people.
 
 Tag Meaning Typical Use
-#loosechain Core protocol event Any generic proof action
+#drvc3 Core protocol event Any generic proof action
 #canonized Finalized / blocked receipt Locked record, NFT seal, or audit log
 #uvrn Linked to the Unified Verification & Reasoning Network Cross-registry sync
 #drvc3 Using DRVC3 certificate schema Compliance and version tracking
@@ -82,9 +87,9 @@ Tag Meaning Typical Use
 
 Each tag can appear in the receipt metadata:
 
-"tags": ["#uvrn", "#loosechain", "#canonized", "#drvc3"]
+"tags": ["#uvrn", "#drvc3", "#canonized"]
 
-# 🧾 Loosechain Protocol Outline
+# 🧾 UVRN Protocol Outline
 
 # 1. Receipt Structure — DRVC3 Schema Extension
 
@@ -99,7 +104,7 @@ Each tag can appear in the receipt metadata:
 "signers": [{"type": "wallet", "address": "0xA9F1…"}],
 "replay_instructions": {"service": "app.launcher", "params": {"id": "42"}},
 "certificate": "DRVC3 v1.0",
-"tags": ["#uvrn", "#loosechain", "#replayable"]
+"tags": ["#uvrn", "#drvc3", "#replayable"]
 }
 
 # 2. Lifecycle (TVC Loop)
@@ -130,10 +135,14 @@ Optional On-chain Anchor Ethereum / EVM hash reference
 
 # 5. Developer Quick-Start
 
-npm i loosechain-sdk
-loosechain create --file ./myfile.pdf --tag "#proof"
+Implementation: [uvrn-packages](https://github.com/UVRN-org/uvrn-packages) — install from npm: `@uvrn/core`, `@uvrn/sdk`, `@uvrn/cli`, `@uvrn/api`, `@uvrn/mcp`, `@uvrn/adapter`.
 
-→ returns receipt_id and verification_url
+```bash
+npm i @uvrn/core @uvrn/sdk
+npx @uvrn/cli run bundle.json
+```
+
+→ returns receipt and verification.
 
 # 6. Principles
 

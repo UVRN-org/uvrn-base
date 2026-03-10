@@ -104,7 +104,7 @@ async function createReceipt(opts: {
     },
     block_state: opts.block ? "blocked" : "loose",
     certificate: "DRVC3 v1.0",
-    tags: ["#loosechain", "#drvc3", "#proof"]
+    tags: ["#drvc3", "#proof"]
   };
 
   assertValidReceipt(receipt);

@@ -9,5 +9,5 @@
   "signers": [{"type": "wallet", "address": "0xA9F1…"}],
   "replay_instructions": {"service": "app.launcher", "params": {"id": "42"}},
   "certificate": "DRVC3 v1.0",
-  "tags": ["#uvrn", "#loosechain", "#replayable"]
+  "tags": ["#uvrn", "#drvc3", "#replayable"]
 }

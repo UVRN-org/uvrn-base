@@ -1,8 +1,8 @@
 {
-  "receipt_id": "loosechain_demo_0001",
+  "receipt_id": "uvrn_demo_0001",
   "issuer": "github.com/your-org/your-repo",
   "event": "code.commit",
-  "description": "Demonstration receipt — documents a verified code commit through the Loosechain proof layer (public schema example).",
+  "description": "Demonstration receipt — documents a verified code commit through the UVRN proof layer (public schema example).",
   "timestamp": "2025-10-06T00:00:00Z",
 
   "actor": {
@@ -39,7 +39,7 @@
 
   "block_state": "loose",
   "certificate": "DRVC3 v1.0",
-  "tags": ["#loosechain", "#proof", "#drvc3", "#code", "#commit"],
+  "tags": ["#drvc3", "#proof", "#code", "#commit"],
 
   "replay_instructions": {
     "service": "github.ci.replay_build",
@@ -51,7 +51,7 @@
 
   "references": {
     "parent_receipt": "uvrn_genesis_001",
-    "canonical_url": "https://uvrn.org/receipts/loosechain_demo_0001"
+    "canonical_url": "https://uvrn.org/receipts/uvrn_demo_0001"
   },
 
   "notes": "Public demonstration of receipt schema. Hash and timestamp are immutable once canonized. Safe for open publication; excludes all Δ-Engine or learning logic.",
