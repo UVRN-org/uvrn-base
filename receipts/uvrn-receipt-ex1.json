@@ -55,7 +55,7 @@
     "canonical_url": "https://uvrn.org/receipts/uvrn_demo_0001"
   },
 
-  "notes": "Public demonstration of receipt schema. Hash and timestamp are immutable once canonized. Safe for open publication; excludes all Δ-Engine or learning logic.",
+  "notes": "Public demonstration of receipt schema. Hash and timestamp are immutable once canonized. Safe for open publication; excludes all Δ-Engine or learning logic. DISCLAIMER: UVRN is in Alpha testing. This receipt reflects agreement between sources at a specific point in time — not objective truth. A v_score reflects source alignment, not correctness. Final trust of output rests with the user. Nothing here constitutes legal, financial, or professional advice. See https://uvrn.org/disclaimer for the full disclaimer.",
 
   "blockchain_anchor": {
     "enabled": false,

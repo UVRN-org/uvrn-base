@@ -20,5 +20,6 @@
     "service": "app.launcher",
     "params": { "id": "42" }
   },
-  "tags": ["#uvrn", "#drvc3", "#replayable"]
+  "tags": ["#uvrn", "#drvc3", "#replayable"],
+  "notes": "Minimal DRVC3 receipt example — required fields only. DISCLAIMER: UVRN is in Alpha testing. This receipt reflects source agreement at a point in time — not objective truth. Final trust of output rests with the user. Nothing here constitutes legal, financial, or professional advice. See https://uvrn.org/disclaimer for the full disclaimer."
 }

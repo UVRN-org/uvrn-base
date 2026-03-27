@@ -2,6 +2,19 @@
  * UVRN Base demo — create and verify DRVC3 receipts locally.
  * For production use see: uvrn-packages (https://github.com/UVRN-org/uvrn-packages),
  * @uvrn/core, and @uvrn/adapter.
+ *
+ * DISCLAIMER: UVRN is in Alpha testing. The engine measures whether your sources
+ * agree with each other — not whether they're correct. Final trust of output rests
+ * with the user. Use at your own discretion. Have fun.
+ *
+ * UVRN makes no claims to "truth" — the "verification" is the output of math. It is
+ * up to any user to decide if a claim is actually "true." A high score means sources
+ * agreed; it does not mean the claim is objectively correct, complete, or will remain
+ * accurate in the future. Nothing produced by UVRN constitutes legal, financial,
+ * medical, scientific, or any other form of professional advice. Research and testing
+ * are absolutely recommended per use case and individual system.
+ *
+ * See https://uvrn.org/disclaimer for the full disclaimer.
  */
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
