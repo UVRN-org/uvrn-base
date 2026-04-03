@@ -27,7 +27,7 @@ It reconciles analytics data, generates proof, and establishes trust.
 - **Receipts** → signed, replayable records of verification runs
 - **Artifacts** → fix-it recipes (GTM JSON, CSV maps, code snippets)
 
-Every UVRN receipt follows the **DRVC3 v1.0** standard:
+Every UVRN receipt follows the **DRVC3 v1.01** standard:
 
 - **Confidence Score:** weighted completeness + parity + freshness.
 - **Checks:** detailed test outcomes.
@@ -63,11 +63,15 @@ ajv validate -s schemas/drvc3.schema.json -d "receipts/uvrn-receipt-ex1.json"
 | Repo / Package | What it is |
 | --- | --- |
 | **[uvrn-base](https://github.com/UVRN-org/uvrn-base)** ← you are here | Protocol: DRVC3 schema, receipt examples, validation demo |
-| **[uvrn-packages](https://github.com/UVRN-org/uvrn-packages)** | Implementation monorepo — Delta Engine, CLI, API, MCP, DRVC3 adapter |
+| **[uvrn-packages](https://github.com/UVRN-org/uvrn-packages)** | Implementation monorepo — 20 scoped `@uvrn/*` packages |
 | **[uvrn-worker](https://github.com/UVRN-org/uvrn-worker)** | Cloudflare Worker — receipt registry API backed by D1 |
 | **[uvrn](https://github.com/UVRN-org/uvrn)** | Project landing page and repo directory |
 
-**npm packages** (from `uvrn-packages`): [@uvrn/core](https://www.npmjs.com/package/@uvrn/core) 1.6.0 · [@uvrn/sdk](https://www.npmjs.com/package/@uvrn/sdk) 1.6.0 · [@uvrn/mcp](https://www.npmjs.com/package/@uvrn/mcp) 1.5.3 · [@uvrn/api](https://www.npmjs.com/package/@uvrn/api) 1.5.2 · [@uvrn/adapter](https://www.npmjs.com/package/@uvrn/adapter) 1.5.1 · [@uvrn/cli](https://www.npmjs.com/package/@uvrn/cli) 1.5.1
+**Live on npm** (from `uvrn-packages`):
+[@uvrn/core](https://www.npmjs.com/package/@uvrn/core) 1.6.0 · [@uvrn/sdk](https://www.npmjs.com/package/@uvrn/sdk) 1.6.0 · [@uvrn/mcp](https://www.npmjs.com/package/@uvrn/mcp) 1.5.3 · [@uvrn/api](https://www.npmjs.com/package/@uvrn/api) 1.5.2 · [@uvrn/adapter](https://www.npmjs.com/package/@uvrn/adapter) 1.5.1 · [@uvrn/cli](https://www.npmjs.com/package/@uvrn/cli) 1.5.1
+
+**New packages** (pre-release, from `uvrn-packages-next`):
+[@uvrn/drift](https://www.npmjs.com/package/@uvrn/drift) · [@uvrn/agent](https://www.npmjs.com/package/@uvrn/agent) · [@uvrn/canon](https://www.npmjs.com/package/@uvrn/canon) · [@uvrn/signal](https://www.npmjs.com/package/@uvrn/signal) · [@uvrn/farm](https://www.npmjs.com/package/@uvrn/farm) · [@uvrn/normalize](https://www.npmjs.com/package/@uvrn/normalize) · [@uvrn/consensus](https://www.npmjs.com/package/@uvrn/consensus) · [@uvrn/score](https://www.npmjs.com/package/@uvrn/score) · [@uvrn/compare](https://www.npmjs.com/package/@uvrn/compare) · [@uvrn/identity](https://www.npmjs.com/package/@uvrn/identity) · [@uvrn/timeline](https://www.npmjs.com/package/@uvrn/timeline) · [@uvrn/watch](https://www.npmjs.com/package/@uvrn/watch) · [@uvrn/embed](https://www.npmjs.com/package/@uvrn/embed) · [@uvrn/test](https://www.npmjs.com/package/@uvrn/test) _(dev only)_
 
 **Open source:** Source: [uvrn-base](https://github.com/UVRN-org/uvrn-base). Implementation: [uvrn-packages](https://github.com/UVRN-org/uvrn-packages), [uvrn](https://github.com/UVRN-org/uvrn).
 
@@ -128,7 +132,7 @@ Each tag can appear in the receipt metadata:
   },
   "validation": { "v_score": 92, "checks": {} },
   "block_state": "loose",
-  "certificate": "DRVC3 v1.0",
+  "certificate": "DRVC3 v1.01",
   "replay_instructions": {"service": "app.launcher", "params": {"id": "42"}},
   "tags": ["#uvrn", "#drvc3", "#replayable"]
 }
@@ -162,14 +166,48 @@ Each tag can appear in the receipt metadata:
 
 ## 5. Developer Quick-Start
 
-Implementation: [uvrn-packages](https://github.com/UVRN-org/uvrn-packages) — install from npm: `@uvrn/core`, `@uvrn/sdk`, `@uvrn/cli`, `@uvrn/api`, `@uvrn/mcp`, `@uvrn/adapter`.
+Implementation: [uvrn-packages](https://github.com/UVRN-org/uvrn-packages) — 20 scoped packages across four protocol layers.
 
+**Minimal install (core + SDK):**
 ```bash
 npm i @uvrn/core @uvrn/sdk
 npx @uvrn/cli run bundle.json
 ```
 
 → returns receipt and verification.
+
+**Full protocol stack (example):**
+```bash
+# Data → Consensus → Score → Receipt
+npm i @uvrn/farm @uvrn/normalize @uvrn/consensus @uvrn/core @uvrn/score
+
+# Lifecycle: drift monitoring + canonization
+npm i @uvrn/drift @uvrn/agent @uvrn/canon
+
+# Delivery: alerts + embed widget
+npm i @uvrn/watch @uvrn/embed
+```
+
+**Protocol Layer Model:**
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Layer 4 — Distribution & Access                                │
+│  @uvrn/embed  @uvrn/watch  @uvrn/mcp  @uvrn/api  @uvrn/cli    │
+├─────────────────────────────────────────────────────────────────┤
+│  Layer 3 — Temporal & Lifecycle                                 │
+│  @uvrn/drift  @uvrn/agent  @uvrn/canon  @uvrn/timeline         │
+├─────────────────────────────────────────────────────────────────┤
+│  Layer 2 — Receipt & Verification                               │
+│  @uvrn/core  @uvrn/sdk  @uvrn/adapter  @uvrn/score             │
+│  @uvrn/compare  @uvrn/identity  @uvrn/test                     │
+├─────────────────────────────────────────────────────────────────┤
+│  Layer 1 — Data & Consensus                                     │
+│  @uvrn/farm  @uvrn/consensus  @uvrn/normalize  @uvrn/signal    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+Every package is independently installable. See [uvrn-packages](https://github.com/UVRN-org/uvrn-packages) for individual package READMEs and minimal install notes.
 
 ## 6. Principles
 
